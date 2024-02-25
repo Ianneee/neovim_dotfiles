@@ -1,7 +1,9 @@
 local function git_branch()
-    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    if string.len(branch) > 0 then
-        return branch
+    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
+    local i = string.find(branch, "fatal")
+
+    if i == nil then
+        return branch:sub(1, -2)
     else
         return nil
     end
@@ -16,13 +18,12 @@ local function statusline()
     local align_right = "%="
     local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
     local fileformat = "[%{&fileformat}]"
-    local filetype = "%y"
     local percentage = " %p%%"
     local linecol = " %l/%L:%c"
 
     if branch then
       return string.format(
-          "%s %s %s %s%s%s%s%s%s%s%s",
+          "%s %s %s %s%s%s%s%s%s%s",
           set_color_1,
           branch,
           set_color_2,
@@ -37,7 +38,7 @@ local function statusline()
       )
     else
       return string.format(
-          "%s%s%s%s%s%s%s%s%s",
+          "%s%s%s%s%s%s%s%s",
           set_color_2,
           file_name,
           modified,
@@ -52,3 +53,4 @@ local function statusline()
 end
 
 vim.opt.statusline = statusline()
+
