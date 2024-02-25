@@ -10,6 +10,13 @@ M.reopen = function()
   vim.api.nvim_command("e " ..path)
 end
 
+M.print_path = function()
+  local path = vim.api.nvim_buf_get_name(0)
+  print(path)
+  local cmd = "echo \"" ..path .."\" | clip"
+  vim.fn.system(cmd)
+end
+
 return M
 
 
