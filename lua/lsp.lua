@@ -115,7 +115,18 @@ require'lspconfig'.quick_lint_js.setup{}
 -- require'lspconfig'.vuels.setup{}
 
 -- npm install -g @angular/language-server
-require'lspconfig'.angularls.setup{}
+-- require'lspconfig'.angularls.setup{}
+
+-- https://github.com/neovim/nvim-lspconfig/issues/1155#issuecomment-1205680003
+local project_library_path = "C:\\Users\\iantirso.cini\\AppData\\Roaming\\npm"
+local cmd = {"ngserver", "--stdio", "--tsProbeLocations", project_library_path , "--ngProbeLocations", project_library_path}
+
+require'lspconfig'.angularls.setup{
+  cmd = cmd,
+  on_new_config = function(new_config,new_root_dir)
+    new_config.cmd = cmd
+  end,
+}
 
 -- npm install -g typescript typescript-language-server
 require'lspconfig'.tsserver.setup{}
