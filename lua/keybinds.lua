@@ -32,6 +32,12 @@ bind('v', 'J', ":m '>+1<cr>gv=gv", { desc = 'Move highlighted lines down' })
 -- Text cleaning
 bind('n', '<leader>w', '<cmd>%s/\\s\\+$/<cr><cmd>nohlsearch<cr>', { desc = 'Delete white spaces at end of each line' })
 
+-- Quick fix list
+bind('n', '<leader>cc', '<cmd>cclose<cr>')
+bind('n', '<leader>co', '<cmd>copen<cr>')
+
+vim.api.nvim_create_user_command('W', "update", { nargs='?'})
+
 -- Telescope
 bind('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 bind('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
