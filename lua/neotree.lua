@@ -19,8 +19,8 @@ require("neo-tree").setup({
             enable_character_fade = true
           },
           indent = {
-            indent_size = 2,
-            padding = 1, -- extra padding on left hand side
+            indent_size = 1,
+            padding = 0, -- extra padding on left hand side
             -- indent guides
             with_markers = true,
             indent_marker = "│",
@@ -194,10 +194,10 @@ require("neo-tree").setup({
         nesting_rules = {},
         filesystem = {
           filtered_items = {
-            visible = false, -- when true, they will just be displayed differently than normal items
-            hide_dotfiles = true,
-            hide_gitignored = true,
-            hide_hidden = true, -- only works on Windows for hidden files/directories
+            visible = true, -- when true, they will just be displayed differently than normal items
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_hidden = false, -- only works on Windows for hidden files/directories
             hide_by_name = {
               --"node_modules"
             },
@@ -290,6 +290,12 @@ require("neo-tree").setup({
                 vim.cmd([[Neotree close]])
             end,
             id = "Close Neotree when opening file"
+          },
+          {
+            event = "neo_tree_buffer_enter",
+            handler = function(arg)
+              vim.opt.relativenumber = true
+            end,
           },
         },
         git_status = {
