@@ -116,7 +116,7 @@ require'lspconfig'.quick_lint_js.setup{}
 
 -- npm install -g @angular/language-server
 -- https://github.com/neovim/nvim-lspconfig/issues/1155#issuecomment-1205680003
-local npm_path = "C:\\Users\\iantirso.cini\\AppData\\Roaming\\npm"
+local npm_path = "/usr/lib/node_modules"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", npm_path , "--ngProbeLocations", npm_path}
 
 require'lspconfig'.angularls.setup{
@@ -139,4 +139,11 @@ require'lspconfig'.html.setup {
 }
 
 -- npm i -g vscode-langservers-extracted
-require'lspconfig'.cssls.setup{}
+require'lspconfig'.cssls.setup{
+  capabilities = capabilities,
+  filetypes = { "css", "html", "php" }
+}
+
+require'lspconfig'.cssmodules_ls.setup{
+  filetypes = { "css", "html", "php" }
+}
