@@ -8,6 +8,7 @@ lua require('lsp')
 lua require('status_line')
 lua require('neotree')
 lua require('my_funcs')
+lua require('git')
 "lua require('jdtls_conf')
 "lua require('java')
 syntax on

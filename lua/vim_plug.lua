@@ -13,6 +13,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 
+-- Git
+Plug 'NeogitOrg/neogit'
+Plug 'sindrets/diffview.nvim'
+
+Plug 'ibhagwan/fzf-lua'
+
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'MunifTanjim/nui.nvim'
 
