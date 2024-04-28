@@ -1,4 +1,4 @@
-
+-- From relatives defaults config
 local neogit = require("neogit")
 
 neogit.setup {
@@ -77,6 +77,7 @@ neogit.setup {
   commit_select_view = {
     kind = "tab",
   },
+  -- This breaks status line -> need to investigate
   -- commit_view = {
   --   kind = "vsplit",
   --   verify_commit = os.execute("which gpg") == 0, -- Can be set to true or false, otherwise we try to find the binary
