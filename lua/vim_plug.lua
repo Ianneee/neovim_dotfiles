@@ -16,6 +16,7 @@ Plug 'tpope/vim-commentary'
 -- Git
 Plug 'NeogitOrg/neogit'
 Plug 'sindrets/diffview.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'ibhagwan/fzf-lua'
 
