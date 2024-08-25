@@ -104,7 +104,9 @@ require'lspconfig'.pyright.setup{}
 -- }
 
 -- https://github.com/golang/tools/tree/master/gopls
-require'lspconfig'.gopls.setup{}
+require'lspconfig'.gopls.setup{
+  cmd = {'gopls', '--remote=auto'}
+}
 
 -- https://clangd.llvm.org/installation.html
 require'lspconfig'.clangd.setup{}
