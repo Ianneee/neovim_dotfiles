@@ -7,11 +7,11 @@ vim.call('plug#begin', '~/.local/share/nvim/plugged')
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lervag/vimtex'
+
+-- Colorscheme
 Plug 'sainnhe/sonokai'
 
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
 
 -- Git
 Plug 'NeogitOrg/neogit'
