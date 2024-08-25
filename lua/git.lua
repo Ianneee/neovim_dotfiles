@@ -69,10 +69,39 @@ neogit.setup {
   -- Automatically show console if a command takes more than console_timeout milliseconds
   auto_show_console = true,
   status = {
+    show_head_commit_hash = true,
     recent_commit_count = 10,
+    HEAD_padding = 10,
+    HEAD_folded = false,
+    mode_padding = 3,
+    mode_text = {
+      M = "modified",
+      N = "new file",
+      A = "added",
+      D = "deleted",
+      C = "copied",
+      U = "updated",
+      R = "renamed",
+      DD = "unmerged",
+      AU = "unmerged",
+      UD = "unmerged",
+      UA = "unmerged",
+      DU = "unmerged",
+      AA = "unmerged",
+      UU = "unmerged",
+      ["?"] = "",
+    },
   },
   commit_editor = {
     kind = "auto",
+    show_staged_diff = true,
+    -- Accepted values:
+    -- "split" to show the staged diff below the commit editor
+    -- "vsplit" to show it to the right
+    -- "split_above" Like :top split
+    -- "vsplit_left" like :vsplit, but open to the left
+    -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
+    staged_diff_split_kind = "split"
   },
   commit_select_view = {
     kind = "tab",
@@ -178,6 +207,10 @@ neogit.setup {
       ["<c-c><c-c>"] = "Submit",
       ["<c-c><c-k>"] = "Abort",
     },
+    commit_editor_I = {
+      ["<c-c><c-c>"] = "Submit",
+      ["<c-c><c-k>"] = "Abort",
+    },
     rebase_editor = {
       ["p"] = "Pick",
       ["r"] = "Reword",
@@ -191,6 +224,12 @@ neogit.setup {
       ["<cr>"] = "OpenCommit",
       ["gk"] = "MoveUp",
       ["gj"] = "MoveDown",
+      ["<c-c><c-c>"] = "Submit",
+      ["<c-c><c-k>"] = "Abort",
+      ["[c"] = "OpenOrScrollUp",
+      ["]c"] = "OpenOrScrollDown",
+    },
+    rebase_editor_I = {
       ["<c-c><c-c>"] = "Submit",
       ["<c-c><c-k>"] = "Abort",
     },
@@ -216,6 +255,7 @@ neogit.setup {
       ["X"] = "ResetPopup",
       ["Z"] = "StashPopup",
       ["b"] = "BranchPopup",
+      ["B"] = "BisectPopup",
       ["c"] = "CommitPopup",
       ["f"] = "FetchPopup",
       ["l"] = "LogPopup",
@@ -226,7 +266,10 @@ neogit.setup {
       ["w"] = "WorktreePopup",
     },
     status = {
+      ["k"] = "MoveUp",
+      ["j"] = "MoveDown",
       ["q"] = "Close",
+      ["o"] = "OpenTree",
       ["I"] = "InitRepo",
       ["1"] = "Depth1",
       ["2"] = "Depth2",
@@ -237,10 +280,10 @@ neogit.setup {
       ["s"] = "Stage",
       ["S"] = "StageUnstaged",
       ["<c-s>"] = "StageAll",
+      ["K"] = "Untrack",
       ["u"] = "Unstage",
       ["U"] = "UnstageStaged",
       ["$"] = "CommandHistory",
-      ["#"] = "Console",
       ["Y"] = "YankSelected",
       ["<c-r>"] = "RefreshBuffer",
       ["<enter>"] = "GoToFile",
@@ -249,6 +292,8 @@ neogit.setup {
       ["<c-t>"] = "TabOpen",
       ["{"] = "GoToPreviousHunkHeader",
       ["}"] = "GoToNextHunkHeader",
+      ["[c"] = "OpenOrScrollUp",
+      ["]c"] = "OpenOrScrollDown",
     },
   },
 }
@@ -262,6 +307,15 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
     untracked    = { text = '┆' },
   },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
@@ -280,9 +334,6 @@ require('gitsigns').setup {
     virt_text_priority = 100,
   },
   current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-  current_line_blame_formatter_opts = {
-    relative_time = false,
-  },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
