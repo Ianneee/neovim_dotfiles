@@ -1,6 +1,6 @@
 --vim.opt.t_Co = 256
 vim.opt.background = "dark"
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true -- Now is autoenabled in nvim 0.10
 
 -- Monokai scheme
 vim.g['sonokai_disable_terminal_colors'] = 1
