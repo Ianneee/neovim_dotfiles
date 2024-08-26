@@ -1,12 +1,6 @@
 -- Vimtex
 vim.g['vimtex_syntax_conceal_disable'] = 1
 
--- LSP cmp
-require('cmp_conf')
-
--- Snippets conf
-require('snippets')
-
 -- Treesitter
 require('treesitter_conf')
 
