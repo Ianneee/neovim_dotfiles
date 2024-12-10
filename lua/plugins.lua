@@ -10,6 +10,7 @@ Plug 'lervag/vimtex'
 
 -- Colorscheme
 Plug 'sainnhe/sonokai'
+Plug 'catppuccin/nvim'
 
 Plug 'tpope/vim-surround'
 
@@ -48,6 +49,7 @@ Plug 'rafamadriz/friendly-snippets'
 
 -- Treesitter
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+Plug('nvim-telescope/telescope-live-grep-args.nvim')
 
 Plug 'windwp/nvim-autopairs'
 

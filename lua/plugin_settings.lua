@@ -2,7 +2,7 @@
 vim.g['vimtex_syntax_conceal_disable'] = 1
 
 -- Treesitter
-require('treesitter_conf')
+require('treesitter')
 
 require("nvim-autopairs").setup {}
 

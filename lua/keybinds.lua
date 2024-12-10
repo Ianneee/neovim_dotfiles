@@ -5,6 +5,7 @@ vim.g.mapleader = ","
 bind('n', '<leader>v', '<cmd>vsp<cr><C-w>l', { desc = 'Vertical split' })
 --bind('n', '<leader>e', '<cmd>e .<cr><cmd>set relativenumber<cr>', { desc = 'Netrw file manager' })
 bind('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Neotree' })
+bind('n', '<M-1>', '<cmd>Neotree reveal<cr>')
 
 -- Buffer navigation
 bind('n', '<M-l>', '<cmd>bp<cr>', { desc = 'Buffer previous' })
@@ -40,7 +41,8 @@ vim.api.nvim_create_user_command('W', "update", { nargs='?'})
 
 -- Telescope
 bind('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-bind('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
+-- bind('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
+bind('n', '<leader>fg', require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })
 bind('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 bind('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
@@ -51,3 +53,4 @@ vim.api.nvim_create_user_command('MyFuncsPP', require('my_funcs').print_path, { 
 bind('n', '<leader>pp', '<cmd>MyFuncsPP<cr>')
 -- bind({'n', 'i'}, '<C-w>', '<cmd>w<cr>', { desc = 'Save with CTRL+s' })
 
+vim.api.nvim_create_user_command('GoVoyeur', require('goVoyeur').file_saved, { nargs='?'})
